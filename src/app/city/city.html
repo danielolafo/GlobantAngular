@@ -1,0 +1,23 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=delete" />
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>City</th>
+                <th>Country</th>
+                <th>Last updated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let city of cities; let i=index">
+                <td>{{city.city}}</td>
+                <td>{{city.country}}</td>
+                <td>{{city.lastUpdate}}</td>
+                <td>
+                    <button><span class="material-symbols-outlined" (click)="delete(i)">delete</span></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

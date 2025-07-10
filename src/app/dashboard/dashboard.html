@@ -1,0 +1,9 @@
+<div>
+    <div id="messages">
+        <table>
+            <tr *ngFor="let message of messages" (click)="viewTeamInfo()" style="border-collapse: collapse;">
+              <td style="border: 1px solid black; border-collapse: collapse;">{{message}}</td>
+            </tr>
+          </table>
+    </div>
+</div>

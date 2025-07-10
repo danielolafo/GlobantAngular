@@ -1,0 +1,12 @@
+<div>
+    <form>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" placeholder="City name" />
+            <select *ngFor="let country of countries">Select country:</select>
+        </div>
+        <div>
+            <button (click)="create()">Create</button>
+        </div>
+    </form>
+</div>

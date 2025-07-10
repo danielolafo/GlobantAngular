@@ -8,9 +8,12 @@ import { environment } from '../environments/environment.development';
 })
 export class CountryService {
 
+  mainPath = environment.mainPath;
+  countryAll = environment.countryAll;
+
   constructor(private http : HttpClient) { }
 
   getCountries():Observable<any[]>{
-    return this.http.get<any[]>(`${environment.mainPath}${environment.country}`);
+    return this.http.get<any[]>(`${this.mainPath}${this.countryAll}`);
   }
 }

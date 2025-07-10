@@ -3,6 +3,8 @@ import { CityService } from '../../service/city-service';
 import { Router } from '@angular/router';
 import { MatDialog } from "@angular/material/dialog";
 import { ConfirmationModal } from '../confirmation-modal/confirmation-modal';
+import { CountryService } from '../../service/country-service';
+import { forkJoin,Observable } from 'rxjs';
 
 @Component({
   selector: 'app-city',
@@ -19,11 +21,26 @@ export class City {
 
   constructor(
     private cityService : CityService,
+    private countryService : CountryService,
     private dialog : MatDialog,
     private cdRef: ChangeDetectorRef){
-    this.cityService.getCities().subscribe(res=>{
+    /*this.cityService.getCities().subscribe(res=>{
       this.cities=res;
-      //console.log("Done ");
+    });*/
+    const cityCall:Observable<any[]> = this.cityService.getCities();
+    const countryCall:Observable<any[]> = this.countryService.getCountries();
+
+    /*forkJoin([cityCall, countryCall]).subscribe([cityCall, countryCall])=>{
+      this.cities=cityRes;
+      this.countries=countryRes;
+    });*/
+    forkJoin([cityCall, countryCall]).subscribe((res)=>{
+      console.log(res);
+      this.countries=res[1];
+      this.cities=res[0];
+      this.cities.forEach((cit) => {
+        cit.country = this.countries[19].countryId;
+      });
     });
   }
 
